@@ -78,9 +78,10 @@ const Ticket = () => {
           const { data } = await api.get("/tickets/u/" + ticketId);
           const { queueId } = data;
           const { queues, profile } = user;
+          const allticket = user.allTicket === 'enabled';
 
           const queueAllowed = queues.find((q) => q.id === queueId);
-          if (queueAllowed === undefined && profile !== "admin") {
+          if (queueAllowed === undefined && profile !== "admin" && !allticket) {
             toast.error("Acesso não permitido");
             history.push("/tickets");
             return;

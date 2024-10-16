@@ -192,12 +192,15 @@ const TicketsListCustom = (props) => {
     const filteredTickets = tickets.filter(
       (t) => queueIds.indexOf(t.queueId) > -1
     );
+    const allticket = user.allTicket === 'enabled';
 
-    if (profile === "user") {
-      dispatch({ type: "LOAD_TICKETS", payload: filteredTickets });
-    } else {
-      dispatch({ type: "LOAD_TICKETS", payload: tickets });
-    }
+		// Função para identificação liberação da settings 
+		if (profile === "admin" || allticket) {
+			dispatch({ type: "LOAD_TICKETS", payload: tickets });
+		} else {
+			dispatch({ type: "LOAD_TICKETS", payload: filteredTickets });
+		}
+
   }, [tickets, status, searchParam, queues, profile]);
 
   useEffect(() => {
