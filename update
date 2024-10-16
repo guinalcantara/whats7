@@ -1,17 +1,3 @@
-git pull
-cd backend
-npm install
-
-npm run build
-npx sequelize db:migrate
-npx sequelize db:seed
-
-cd ../frontend
-npm install
-npm run build
-pm2 restart all
-
-
 #!/bin/bash
 echo "Updating Whaticket, please wait."
 
